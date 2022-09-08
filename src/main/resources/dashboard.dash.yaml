@@ -1,0 +1,25 @@
+datasets:
+    - uuid: hello
+      content: >-
+          [
+              ["John", 33],
+              ["Mark", 42],
+              ["Mary", 29]
+          ]
+pages:
+    - components:
+          - html: >-
+              <strong style='font-size: x-large'>Dashbuilder from JavaFX</strong> <hr />
+              This is a sample dashboard. Start editing on the left side to see the results here!
+            properties:
+                margin-bottom: 30px
+          - settings:
+                type: BARCHART
+                lookup:
+                    uuid: hello
+                    group:
+                        - columnGroup:
+                              source: Column 0
+                          functions:
+                              - source: Column 0
+                              - source: Column 1
