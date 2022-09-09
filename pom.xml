@@ -13,6 +13,7 @@
     <dashbuilder.version>0.22.0</dashbuilder.version>
     <main.class>org.dashbuilder.desktop.Main</main.class>
     <javafx.plugin.version>0.0.8</javafx.plugin.version>
+    <monacofx.version>0.0.8</monacofx.version>
   </properties>
 
   <dependencies>
@@ -40,6 +41,11 @@
       <groupId>org.webjars.npm</groupId>
       <artifactId>kie-tools__dashbuilder-client</artifactId>
       <version>${dashbuilder.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.mihosoft.monacofx</groupId>
+      <artifactId>monacofx</artifactId>
+      <version>${monacofx.version}</version>
     </dependency>
   </dependencies>
 

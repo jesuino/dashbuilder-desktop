@@ -2,6 +2,7 @@ package org.dashbuilder.desktop;
 
 import java.io.IOException;
 
+import eu.mihosoft.monacofx.MonacoFX;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -42,17 +43,20 @@ public class MainApplication extends Application implements Runnable {
     @Override
     public void start(Stage s) {
         var webView = new WebView();
-
+        var monacoFX = new MonacoFX();
+        var root = new SplitPane(monacoFX, webView);
         spContent = new SimpleStringProperty();
-        var editor = new TextArea();        
-        var root =  new SplitPane(editor, webView);
+
         s.setScene(new Scene(root));
         s.setTitle("Dashbuilder");
 
         VBox.setVgrow(webView, Priority.ALWAYS);
+
+        monacoFX.getEditor().getDocument().textProperty().bindBidirectional(spContent);
+        monacoFX.getEditor().setCurrentLanguage("yaml");
+        monacoFX.getEditor().setCurrentTheme("vs-dark");
+
         s.show();
-        
-        editor.textProperty().bindBidirectional(spContent);
 
         setupEngine(webView);
         spContent.addListener((obs, old, _new) -> dbBridge.sendContent(_new));
